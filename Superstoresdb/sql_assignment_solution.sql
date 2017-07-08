@@ -119,3 +119,4 @@ SELECT SUM(Sales) as total_sales,
        AVG(Sales) as avg_sales 
 FROM market_fact;
 
+
