@@ -65,3 +65,57 @@ shipping cost for that order (shipping_cost) and the product’s base margin (pr
 
 /*
 ==================================================================================================
+------ B. Identify and list the Primary Keys and Foreign Keys for this dataset (Hint: If a table
+don’t have Primary Key or Foreign Key, then specifically mention it in your answer.)
+==================================================================================================
+
+
+SOLUTION:
+
+TABLE : cust_dimen
+Primary Key : cust_id
+Foreign Key : No foreign key reference
+
+TABLE : shipping_dimen
+Primary Key : ship_id
+Foreign Key : No foreign key reference
+
+TABLE : order_dimen
+Primary Key : ord_id
+Foreign Key : No foreign key reference
+
+TABLE : prod_dimen
+Primary Key : prod_id
+Foreign Key : No foreign key reference
+
+TABLE : market_facts
+Primary Key : There are no primary key that can uniquely identify any row.
+Foreign Key : ord_id references ord_id of table orders_dimen
+				prod_id references prod_id of table prod_dimen
+                ship_id references ship_id of table shipping_dimen
+                cust_id references cust_id of table cust_dimen
+                
+*/
+
+
+
+
+
+/*
+==================================================================================================
+Task 2: Basic Analysis
+==================================================================================================
+Write the SQL queries for the following:
+==================================================================================================
+------ A. Find the total and the average sales (display total_sales and avg_sales)
+==================================================================================================
+*/
+
+
+# SOLUTION :
+
+
+SELECT SUM(Sales) as total_sales,
+       AVG(Sales) as avg_sales 
+FROM market_fact;
+
