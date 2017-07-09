@@ -236,3 +236,43 @@ GROUP BY product_sub_category
 ORDER BY product_category ;
 
 
+
+/*
+==================================================================================================
+------ C. Where is the least profitable product subcategory shipped the most? For the least
+profitable product sub-category, display the region-wise no_of_shipments and the
+profit made in each region in decreasing order of profits (i.e. region,
+no_of_shipments, profit_in_each_region)
+o Note: You can hardcode the name of the least profitable product subcategory
+==================================================================================================
+*/
+
+# SOLUTION : For the least profitable product sub-category, displaying the region-wise no_of_shipments
+# and the profit made in each region in decreasing order of profits
+
+# NOTE : Assuming Least Profitable refers to negative profits (loss) also.
+
+SELECT Region, 
+       COUNT(DISTINCT ship_id) as no_of_shipments, 
+       SUM(profit) as profit_in_each_region 
+FROM cust_dimen c 
+     INNER JOIN market_fact m 
+     ON m.cust_id = c.cust_id 
+WHERE m.prod_id IN (SELECT prod_id 
+                    FROM prod_dimen 
+                    WHERE product_sub_category = 'TABLES' ) 
+GROUP BY Region 
+ORDER BY profit_in_each_region DESC;
+
+
+# SOLUTION : For Where is the least profitable product subcategory shipped the most?
+
+SELECT Region, 
+       COUNT(DISTINCT ship_id) as no_of_shipments, 
+       SUM(profit) as profit_in_each_region 
+FROM cust_dimen c 
+     INNER JOIN market_fact m 
+     ON m.cust_id = c.cust_id 
+WHERE m.prod_id IN (SELECT prod_id 
+                    FROM prod_dimen 
+                    WHERE product_sub_category = 'TABLES' ) 
