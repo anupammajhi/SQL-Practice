@@ -174,3 +174,64 @@ ORDER BY no_of_products_sold DESC;
 
 
 /*
+==================================================================================================
+------ E. Find all the customers from Atlantic region who have ever purchased ‘TABLES’ and
+the number of tables purchased (display the customer name, no_of_tables purchased)
+==================================================================================================
+*/
+
+# SOLUTION :
+
+SELECT Customer_Name, 
+       SUM(Order_quantity) as number_of_tables_purchased 
+FROM cust_dimen c, market_fact m
+WHERE c.Cust_id = m.Cust_id
+    AND c.Region = 'Atlantic'
+    AND m.Prod_id IN (SELECT Prod_id 
+                     FROM prod_dimen 
+                     WHERE Product_Sub_Category = 'TABLES')
+GROUP BY c.cust_id;
+
+
+
+
+
+/*
+==================================================================================================
+Task 3: Advanced Analysis
+==================================================================================================
+Write sql queries for the following:
+==================================================================================================
+------ A. Display the product categories in descending order of profits (display the product
+category wise profits i.e. product_category, profits)?
+==================================================================================================
+*/
+
+# SOLUTION :
+
+SELECT Product_Category,SUM(Profit) as Profits 
+FROM market_fact m 
+    INNER JOIN prod_dimen p 
+    ON m.prod_id = p.prod_id 
+GROUP BY Product_Category 
+ORDER BY Profits DESC;
+
+
+/*
+==================================================================================================
+------ B. Display the product category, product sub-category and the profit within each
+subcategory in three columns.
+==================================================================================================
+*/
+
+# SOLUTION : 
+
+SELECT product_category, 
+       product_sub_category,
+       SUM(profit) as profit 
+FROM prod_dimen p 
+     INNER JOIN market_fact m 
+     ON p.prod_id = m.prod_id 
+GROUP BY product_sub_category 
+ORDER BY product_category ;
+
