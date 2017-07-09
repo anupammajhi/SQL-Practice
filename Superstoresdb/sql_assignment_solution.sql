@@ -120,3 +120,56 @@ SELECT SUM(Sales) as total_sales,
 FROM market_fact;
 
 
+
+
+/*
+==================================================================================================
+------ B. Display the number of customers in each region in decreasing order of
+no_of_customers. The result should contain columns Region, no_of_customers
+==================================================================================================
+*/
+
+# SOLUTION : 
+
+SELECT Region, 
+       COUNT(*) as no_of_customers 
+FROM cust_dimen 
+GROUP BY Region 
+ORDER BY no_of_customers DESC;
+
+
+
+
+/*
+==================================================================================================
+------ C. Find the region having maximum customers (display the region name and
+max(no_of_customers)
+==================================================================================================
+*/
+
+# SOLUTION : 
+
+SELECT Region, 
+       COUNT(*) as no_of_customers 
+FROM cust_dimen 
+GROUP BY Region 
+ORDER BY no_of_customers DESC 
+LIMIT 1;
+
+
+/*
+==================================================================================================
+------ D. Find the number and id of products sold in decreasing order of products sold (display
+product id, no_of_products sold)
+==================================================================================================
+*/
+
+# SOLUTION : 
+
+SELECT Prod_id, 
+       SUM(Order_Quantity) as no_of_products_sold 
+FROM market_fact 
+GROUP BY Prod_id
+ORDER BY no_of_products_sold DESC;
+
+
