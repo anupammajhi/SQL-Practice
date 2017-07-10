@@ -277,3 +277,12 @@ WHERE m.prod_id IN (SELECT prod_id
                     FROM prod_dimen 
                     WHERE product_sub_category = 'TABLES' ) 
 GROUP BY Region 
+ORDER BY no_of_shipments DESC 
+LIMIT 1;
+
+/*
+==================================================================================================
+Important Note:
+Submit your answers for all these tasks in a .sql file.
+==================================================================================================
+*/
