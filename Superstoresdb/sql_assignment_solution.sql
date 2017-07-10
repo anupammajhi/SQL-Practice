@@ -276,3 +276,4 @@ FROM cust_dimen c
 WHERE m.prod_id IN (SELECT prod_id 
                     FROM prod_dimen 
                     WHERE product_sub_category = 'TABLES' ) 
+GROUP BY Region 
